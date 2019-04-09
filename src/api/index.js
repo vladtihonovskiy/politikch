@@ -1,13 +1,21 @@
-import path from '../../config/config';
+import config from '../../config/config';
+import axios from 'axios';
 
 class TaskApi {
 	async fetchData(URL) {
-		console.log("124124124");
 		const result = await axios({
-			method: 'GET',
-			url:`${path}/`${URL},
+			method: 'POST',
+			url:`${config.path}/api/getData`,
+			data: {
+				url: URL
+			}
 		});
 
 		return result;
 	}
 }
+
+
+export default {
+	task: new TaskApi(),
+};

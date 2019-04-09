@@ -46,7 +46,6 @@ app.get('/', (req, res) => {
 app.post('/api/getData', (req, res) => {
 
     const URL = req.body.url;
-    console.log("URL", URL);
     fetch(URL, {
         method: 'GET',
         headers: {

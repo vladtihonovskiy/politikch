@@ -1,7 +1,6 @@
 function fetchRequest(data = "", sort = false) {
     const url = "http://ws-old.parlament.ch/councillors" + data;
     let fetchData = [];
-    console.log(data);
     fetch('http://localhost:3001/api/getData',  {
         method: 'POST',
         headers: {
@@ -13,7 +12,6 @@ function fetchRequest(data = "", sort = false) {
         return response.json();
     }).then(function(data) {
         fetchData = data;
-        console.log(data);
         let  div = document.createElement('table');
 
         if(sort && sort !== 'unset' ) {
