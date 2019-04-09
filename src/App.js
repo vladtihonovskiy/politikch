@@ -7,6 +7,7 @@ import { object, string, bool, func, array, any } from "prop-types";
 
 // import { LoaderContainer } from "./components/Loader/Loader";
 
+import 'react-toastify/dist/ReactToastify.css';
 
 import classNames from "classnames";
 import classes from "./App.less";

@@ -105,10 +105,6 @@ module.exports = {
 			},
 			favicon: 'src/images/favicon.png'
 		}),
-		new ErrorOverlayPlugin(),
-		new webpack.ProvidePlugin({
-			TWEEN: path.resolve(__dirname, './src/helpers/libs/tween.js'),
-			wrapperImage: path.resolve(__dirname, './src/helpers/ImgWrapper/ImgWrapper'),
-		})
+		new ErrorOverlayPlugin()
 	]
 };

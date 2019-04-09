@@ -1,24 +1,23 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 module.exports = {
 	devtool: "devtool: 'source-map'",
+	mode: 'development',
 	entry: ["babel-polyfill", "./src/index.js"],
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'build'),
 		filename: 'bundle.js',
-		publicPath: '/',
-		chunkFilename: '[name].chunk.js',
+		publicPath: '/'
 	},
-
 	module: {
 		rules: [
 
 			{
 				test: /\.(js|jsx|mjs)$/,
 				exclude: /node_modules/,
-                include: path.resolve(__dirname, './src'),
 				use: {
 					loader: "babel-loader",
 					options: {
@@ -59,30 +58,25 @@ module.exports = {
 					},
 					'less-loader'
 				]
+			},
+			{
+				test: /\.(gif|png|jpe?g|svg)$/i,
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							bypassOnDebug: true, // webpack@1.x
+							disable: true, // webpack@2.x and newer
+							outputPath: 'images/'
+						},
+					},
+				],
 			}
 		]
 	},
-	optimization: {
-		splitChunks: {
-			name: false,
-			cacheGroups: {
-				vendors: {
-					name: 'vendors',
-					test: /[\\/]node_modules[\\/]/,
-					chunks: 'all',
-					minChunks: 1,
-					priority: -10,
-				},
-				default: {
-					minChunks: 2,
-					priority: -20,
-					reuseExistingChunk: true,
-				},
-			},
-		},
-	},
 	devServer: {
-		historyApiFallback: true,
+		historyApiFallback: true
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
